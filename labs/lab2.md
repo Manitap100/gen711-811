@@ -51,7 +51,7 @@ You should see an indication that it downloaded to your home directory
 3. If you did this correctly, you should now see the README file pop up on the left in the list of files. Click on it to open it. 
 4. While we are at it, lets save your VScode workspace in the repo directory. Click 'File --> Save Workspace As...' and click on the 'Bioinformatics-Notes' directory to save the workspace there. The workspace file just lists your VScode preferences.This way, you can load this workspace each week to pick up where you left off.   
 5. In vscode terminal, go to 'file' --> 'new text file'. Save this empty file as 'yourlastname_yourfirstname.md'. Keep notes in this file as demonstrated by your instructor to get full attendance points. Add some short random text to this document to make sure that it is picked up. 
-6. If you've done everything above correctly, new documents and changes should be tracked VScode and Git. To get your changes incorporated into your repository at GitHub, click on the github bubble fork (usually the third icon down on the left of VScode). Enter any random text you want into the 'Message' box, and then hit the commit button. This should upload your new files/changes to your GitHub repo. 
+
 
 Note: Text files saved with the '.md' after it will be interpreted at 'markdown' format. We will get into this soon. 
 
@@ -106,42 +106,47 @@ SHA256:gS9dqsZ2WtlQhQWDWKC81aoPG3OwkFp0e5kAKwzbhLA YOUREMAIL@unh.edu
 
 3. Change your repository's remote URL:
 - Change into your Gen711-811 repository with ```cd ~/gen711-811```
-- In your repository's directory, check the current remote URL with ```git remote -v``` You should see:
-```
-origin  git@github.com:YOURGITUSERNAME/gen711-811.git (fetch)
-origin  git@github.com:YOURGITUSERNAME/gen711-811.git (push)
-```
-- If it's an HTTPS URL (e.g., https://github.com), change it to the SSH format with
+- In your repository's directory, check the current remote URL with ```git remote -v``` You should see the name of your fetch (download) and push (upload) access method. Set it to use ssh with:
 ```
 git remote set-url origin git@github.com:YOURUSERNAME/REPOSITORY.git
 ```
-Note: replace 'USERNAME' with your github username, and 'REPOSITORY' with the name of the repository you made for your lab notebook above. This is what my command would look like:
+Note: replace 'YOURUSERNAME' with your ***github username***, and 'REPOSITORY' with the name of the repository. In this case, it is 'gen711-811'. This is what my command for me would look like:
 ```
 git remote set-url origin git@github.com:jthmiller/gen711-811.git
 ```
+- my github username is jthmiller
+- the repo name is gen711-811
+
 4. Test the connection at RON with: ```ssh -T git@github.com```
-You should see a message confirming a successful connection. 
+You should see a message confirming a successful connection like this:
 ```
 Hi jthmiller! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 Now, subsequent push and pull operations from within VS Code will use SSH authentication without prompting for credentials. 
 
-5. Do the same for your 'gen711-811' repository. Change your current directory to the lab notebook directory with ```cd ~/YOURLABNOTEBOOKREPONAME```
-
-6. In your repository's directory, check the current remote URL with ```git remote -v``` You should see:
+### Do the same for your lab notebook repository. 
+1. Change your current directory to the lab notebook directory with ```cd ~/YOURLABNOTEBOOKREPONAME```
+2. In your repository's directory, check the current remote URL with ```git remote -v``` You should see the name of your fetch (download) and push (upload) access method. It should also show your username and repo name.
+3. Set it to use ssh authentication with:
 ```
-origin  git@github.com:YOURGITUSERNAME/YOURLABNOTEBOOKREPONAME.git (fetch)
-origin  git@github.com:YOURGITUSERNAME/YOURLABNOTEBOOKREPONAME.git (push)
+git remote set-url origin git@github.com:YOURUSERNAME/REPOSITORY.git
 ```
+Note: replace 'YOURUSERNAME' with your ***github username***, and 'REPOSITORY' with the name of the repository. In this case, it is whatever you nammed your notebook repo. 
+
+If you've done everything above correctly, new documents and changes should be tracked VScode and Git. To get your changes incorporated into your repository at GitHub, click on the github bubble fork (usually the third icon down on the left of VScode). Enter any random text you want into the 'Message' box, and then hit the commit button. This should upload your new files/changes to your GitHub repo. 
+
+Best practice is to use different authentication keys for different machines (e.g., work laptop vs. personal laptop). If one machine is compromised, you can revoke access for that specific key without affecting others. Go through this process again if you have another computer to work from.
 
 
-Best practice is to use different authentication keys for different machines (e.g., work laptop vs. personal laptop). If one machine is compromised, you can revoke access for that specific key without affecting others. 
 
 
 ## Beyond this is optional for today.
 
 ### Updating your copy of 'gen711-811' each week.
-### If you forked gen711-811, this is probably the easiest method
+If you forked gen711-811, the easiest method to get the updates each week is to log in to your GitHub in a browser, navigate to your copy of the 'gen711-811' repo. If there are updates to be had, you should see 'update fork' button.  This will bring the new files/changes to your GitHub repo, but not to your 'remote repo' of gen711-811 on RON. To pull the updates to your RON remote repo, open VScode, connect to RON (as above). Once you've connected to RON, go to 'File --> Open Folder'. Scroll down to and click 'gen711-811'. 
+
+
+
 To get new course files added to your repository later, you will need to add the original repository (the one you forked) as a 'remote' [see here for help](https://stackoverflow.com/questions/3903817/pull-new-updates-from-original-github-repository-into-forked-github-repository),[and here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)  
 To add updates/new files from the gen711-811 repo, copy and paste these lines into terminal on RON:
 ```
