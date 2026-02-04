@@ -58,26 +58,85 @@ Note: Text files saved with the '.md' after it will be interpreted at 'markdown'
 
 ### Use SSH keys on RON so that you dont need passwords to push your lab notebook
 1. Generate an SSH key pair (if you don't have one) in your host's terminal using the command:
-ssh-keygen -t ed25519 -C "your_email@example.com"
+ssh-keygen -t ed25519 -C "jeffrey.miller@unh.edu"
+- You might see:
+```
+Enter file in which to save the key (/home/users/YOURUSERNAME/.ssh/id_ed25519):
+```
+Hit enter to proceed
+- If you've done this already and re-runnig it, you might see
+```
+/home/users/YOURUSERNAME/.ssh/id_ed25519 already exists.
+Overwrite (y/n)?
+```
+Enter 'y' and hit return
+Next, you might see
+```
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+```
+Hit return for both. No passphrase is required. 
+You should see:
+```
+Your public key has been saved in /home/users/YOURUSERNAME/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:gS9dqsZ2WtlQhQWDWKC81aoPG3OwkFp0e5kAKwzbhLA YOUREMAIL@unh.edu
+The key's randomart image is:
++--[ED25519 256]--+
+|+.o   .+..o+o    |
+|+= + ..o. .o     |
+|E.+ = o o o      |
+| o o = * =       |
+|  + + * S        |
+| o . * o +       |
+|.   * * + .      |
+|     X +         |
+|    . o          |
++----[SHA256]-----+
+```
 
 2. Add your public key to your GitHub account:
-- Copy the content of your public key file using ```cat ~/.ssh/id_ed25519.pub```
-- This should print the key to the terminal screen
-- Go to your GitHub account's Settings > SSH and GPG keys.
-- Click New SSH key, give it a title, paste the copied public key, and click Add SSH key.
+- Copy the content of your public key file. Print it to the screen using ```cat ~/.ssh/id_ed25519.pub```
+- This should print the key to the terminal screen and look like this
+```
+SHA256:gS9dqsZ2WtlQhQWDWKC81aoPG3OwkFp0e5kAKwzbhLA YOUREMAIL@unh.edu
+```
+- Go to your GitHub account's Settings (gear top right icon of your home GitHub page) > SSH and GPG keys.
+- Click New SSH key, give it a title (use Laptop to RON), paste the copied public key, and click Add SSH key.
 
 3. Change your repository's remote URL:
-- In your repository's directory, check the current remote URL with ```git remote -v```
+- Change into your Gen711-811 repository with ```cd ~/gen711-811```
+- In your repository's directory, check the current remote URL with ```git remote -v``` You should see:
+```
+origin  git@github.com:YOURGITUSERNAME/gen711-811.git (fetch)
+origin  git@github.com:YOURGITUSERNAME/gen711-811.git (push)
+```
 - If it's an HTTPS URL (e.g., https://github.com), change it to the SSH format with
 ```
-git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
+git remote set-url origin git@github.com:YOURUSERNAME/REPOSITORY.git
 ```
-Note: replace 'USERNAME' with your github username, and 'REPOSITORY' with the name of the repository you made for your lab notebook above
-
+Note: replace 'USERNAME' with your github username, and 'REPOSITORY' with the name of the repository you made for your lab notebook above. This is what my command would look like:
+```
+git remote set-url origin git@github.com:jthmiller/gen711-811.git
+```
 4. Test the connection at RON with: ```ssh -T git@github.com```
-You should see a message confirming a successful connection. Now, subsequent push and pull operations from within VS Code will use SSH authentication without prompting for credentials. 
+You should see a message confirming a successful connection. 
+```
+Hi jthmiller! You've successfully authenticated, but GitHub does not provide shell access.
+```
+Now, subsequent push and pull operations from within VS Code will use SSH authentication without prompting for credentials. 
 
-5. Do the same for your 'gen711-811' repository.
+5. Do the same for your 'gen711-811' repository. Change your current directory to the lab notebook directory with ```cd ~/YOURLABNOTEBOOKREPONAME```
+
+6. In your repository's directory, check the current remote URL with ```git remote -v``` You should see:
+```
+origin  git@github.com:YOURGITUSERNAME/YOURLABNOTEBOOKREPONAME.git (fetch)
+origin  git@github.com:YOURGITUSERNAME/YOURLABNOTEBOOKREPONAME.git (push)
+```
+
+
+Best practice is to use different authentication keys for different machines (e.g., work laptop vs. personal laptop). If one machine is compromised, you can revoke access for that specific key without affecting others. 
+
 
 ## Beyond this is optional for today.
 
